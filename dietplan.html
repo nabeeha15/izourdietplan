@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    font-family: 'Baloo 2', cursive;
+    background: linear-gradient(135deg, #e6f0ff, #cce0ff);
+    margin: 0;
+    padding: 20px;
+    color: #003366;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 40px; /* space below header */
+  }
+
+  header h1 {
+    font-size: 3em;
+    color: #004080;
+    margin: 0;
+  }
+
+  header .subtitle {
+    font-size: 1.2em;
+    color: #0059b3;
+    font-weight: bold;
+    margin-top: 15px; /* space between h1 and subtitle */
+    position: static; /* so it flows naturally */
+  }
+
+  .day-button {
+    background-color: #3399ff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 8px 0;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 400px;
+    transition: transform 0.2s, background 0.3s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  .day-button:hover {
+    transform: translateY(-5px) rotate(-2deg);
+    background-color: #2673cc;
+  }
+
+  .meal-plan {
+    background: #cce0ff;
+    border-radius: 25px;
+    padding: 20px;
+    margin: 15px auto 30px auto;
+    max-width: 700px;
+    text-align: left;
+    display: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    position: relative;
+  }
+
+  .meal {
+    background: #b3d1ff;
+    padding: 10px 15px;
+    border-radius: 15px;
+    margin: 8px 0;
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+  .meal:hover {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+
+  .motivation-btn {
+    display: block;
+    margin: 10px auto 0 auto;
+    padding: 10px 15px;
+    border-radius: 15px;
+    border: none;
+    background-color: #ff99cc;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background 0.3s;
+  }
+  .motivation-btn:hover {
+    background-color: #ff66aa;
+    transform: translateY(-3px) rotate(-2deg);
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 999;
+  }
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff0f5;
+    padding: 30px 40px;
+    border-radius: 30px;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.3);
+    font-size: 20px;
+    z-index: 1000;
+    text-align: center;
+    color: #d63384;
+    animation: pop 0.4s ease-out;
+  }
+  .popup span {
+    font-size: 2em;
+  }
+  @keyframes pop {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  }
+
+  footer {
+    background: #cce0ff;
+    border-radius: 20px;
+    max-width: 700px;
+    margin: 30px auto 10px auto;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  footer h3 {
+    text-align: center;
+    color: #004080;
+    margin-bottom: 15px;
+  }
+  footer ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Ammadi's Diet Plan</h1>
+  <h2 class="subtitle">10-Day Meal Plan For High Protien </h2>
+</header>
+
+<div id="plan-container">
+
+<!-- === Day 1 === -->
+<button class="day-button" onclick="toggleDay('day1')">Day 1 🥚🥗</button>
+<div class="meal-plan" id="day1">
+  <div class="meal">Breakfast: 3 boiled eggs + 1 slice brown bread🍳</div>
+  <div class="meal">Lunch: 150g chicken salan + 1 roti + half plate spinach sabzi+ salad 🥗</div>
+  <div class="meal">Dinner: 150g grilled chicken + 1 cup sautéed mixed vegetables + 1 roti 🍗</div>
+  <div class="meal">Snacks: 1 apple + 1 scoop whey protein 🍎</div>
+  <button class="motivation-btn" onclick="showMotivation('Woohoo! You can do it 💖')">Open Motivation 💌</button>
+</div>
+
+<!-- === Day 2 === -->
+<button class="day-button" onclick="toggleDay('day2')">Day 2 🥣🍌</button>
+<div class="meal-plan" id="day2">
+  <div class="meal">Breakfast: 1/2 cup oats + milk + 2 boiled eggs 🥣</div>
+  <div class="meal">Lunch: 1 cup daal + 2 boiled eggs + 1 roti + 1 cup lauki + salad 🥗</div>
+  <div class="meal">Dinner: 150g fish + 1/2 cup rice + sautéed veggies 🐟</div>
+  <div class="meal">Snacks: 1 banana + 1 scoop whey protein 🍌</div>
+  <button class="motivation-btn" onclick="showMotivation('I am Proud of you for showing up 🌸')">Open Motivation 💌</button>
+</div>
+
+<!-- === Day 3 === -->
+<button class="day-button" onclick="toggleDay('day3')">Day 3 🍳🥗</button>
+<div class="meal-plan" id="day3">
+  <div class="meal">Breakfast: 3 egg omelette + 1 roti 🍳</div>
+  <div class="meal">Lunch: Palak (spinach) + 100g chicken + 1 roti 🥗</div>
+  <div class="meal">Dinner: 1 cup daal + 1 yogurt + sautéed veggies 🥣</div>
+  <div class="meal">Snacks: any fruit or mix fruit 1 scoop whey protein 🍎</div>
+  <button class="motivation-btn" onclick="showMotivation( 'You’re getting stronger every day ✨')">Open Motivation 💌</button>
+</div>
+
+<!-- === Day 4 === -->
+<button class="day-button" onclick="toggleDay('day4')">Day 4 🥣🍗</button>
+<div class="meal-plan" id="day4">
+  <div class="meal">Breakfast: Oats + yogurt + 1 boiled egg 🥣</div>
+  <div class="meal">Lunch: 150g grilled chicken + 1/2 cup rice + 1 cup mixed veggies 🍗</div>
+  <div class="meal">Dinner: 150g lean beef + 1 roti + salad 🥩</div>
+  <div class="meal">Snacks: 1 fruit + 1 scoop whey protein 🍎</div>
+  <button class="motivation-btn" onclick="showMotivation('Woohoo! Keep going, you’re doing amazing! 💫')">Open Motivation 💌</button>
+</div>
+
+<!-- === Day 5 === -->
+<button class="day-button" onclick="toggleDay('day5')">Day 5 🍳🍌</button>
+<div class="meal-plan" id="day5">
+  <div class="meal">Breakfast: 2 eggs + toast + 1 banana 🍳🍌</div>
+  <div class="meal">Lunch: 150g chicken + 1 roti + 1 cup palak 🥗</div>
+  <div class="meal">Dinner: 1 cup daal + 2 eggs + 1 roti 🥣</div>
+  <div class="meal">Snacks: 1 fruit + any nuts + 1 scoop whey protein 🍎</div>
+  <button class="motivation-btn" onclick="showMotivation('LESGOOOO, This is soooo niceeeee 💕')">Open Motivation 💌</button>
+</div>
+
+<!-- === Day 6 === -->
+<button class="day-button" onclick="toggleDay('day6')">Day 6 🍗🥗</button>
+<div class="meal-plan" id="day6">
+  <div class="meal">Breakfast: 3 eggs + 1 slice bread 🍳</div>
+  <div class="meal">Lunch: 150g grilled fish + 1/2 cup rice + 1 cup lauki 🐟</div>
+  <div class="meal">Dinner: 150g chicken + steamed veggies + 1 roti 🍗</div>
+  <div class="meal">Snacks: 1 fruit + 1 scoop whey protein 🍎</div>
+  <button class="motivation-btn" onclick="showMotivation( 'Consistency is your power! 🌷')">Open Motivation 💌</button>
+</div>
+
+<!-- === Day 7 === -->
+<button class="day-button" onclick="toggleDay('day7')">Day 7 🥣🍳</button>
+<div class="meal-plan" id="day7">
+  <div class="meal">Breakfast: 1/2 cup oats + milk + 1 boiled egg 🥣</div>
+  <div class="meal">Lunch: 150g lean beef + 1 roti + 1 cup palak 🥩</div>
+  <div class="meal">Dinner: 150g chicken + 2 eggs + 1 roti 🍗</div>
+  <div class="meal">Snacks: 1 scoop whey protein 🍎</div>
+  <button class="motivation-btn" onclick="showMotivation('Small steps = big results 💖')">Open Motivation 💌</button>
+</div>
+
+<!-- === Day 8 === -->
+<button class="day-button" onclick="toggleDay('day8')">Day 8 🍳🥗</button>
+<div class="meal-plan" id="day8">
+  <div class="meal">Breakfast: 3 egg omelette + 1 fruit 🍳🍎</div>
+  <div class="meal">Lunch: 150g chicken + 1/2 cup rice + palak 🥗</div>
+  <div class="meal">Dinner: 150g grilled fish + 1 roti + vegetables 🐟</div>
+  <div class="meal">Snacks: protien bar + 1 scoop whey protein 🍌</div>
+  <button class="motivation-btn" onclick="showMotivation('Believe in yourself! 🌟')">Open Motivation 💌</button>
+</div>
+
+<!-- === Day 9 === -->
+<button class="day-button" onclick="toggleDay('day9')">Day 9 🥣🍗</button>
+<div class="meal-plan" id="day9">
+  <div class="meal">Breakfast: Oats + yogurt 🥣</div>
+  <div class="meal">Lunch: 1 cup daal + 1/2 cup rice + 1 cup mixed vegetables 🥗</div>
+  <div class="meal">Dinner: 150g chicken + vegetables 🍗</div>
+  <div class="meal">Snacks: 1 fruit + any nuts + 1 scoop whey protein 🍎</div>
+  <button class="motivation-btn" onclick="showMotivation('We can do this tog 💗')">Open Motivation 💌</button>
+</div>
+
+<!-- === Day 10 === -->
+<button class="day-button" onclick="toggleDay('day10')">Day 10 🍳🎉</button>
+<div class="meal-plan" id="day10">
+  <div class="meal">Breakfast: 3 eggs + toast 🍳</div>
+  <div class="meal">Lunch: 150g chicken + 1 roti + palak 🥗</div>
+  <div class="meal">Dinner: 1 plate daal + 1 roti + salad 🥣</div>
+  <div class="meal">Snacks: 1 fruit + 6-7 nuts + 1 scoop whey protein 🍎</div>
+  <button class="motivation-btn" onclick="showMotivation('Woohoo! You made it!!!!! 🎉')">Open Motivation 💌</button>
+</div>
+
+</div>
+
+<!-- Popup -->
+<div class="overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup"></div>
+
+<!-- Footer -->
+<footer>
+  <h3>Post-Workout & Important Notes 🥤✨</h3>
+  <p><strong>Protein Shake:</strong> 1 scoop whey protein (25g protein) immediately after workout with water.</p>
+  <ul>
+    <li>Oil control &gt; everything</li>
+    <li>Protein in EVERY meal</li>
+    <li>No random or late night snacking</li>
+    <li>Stay consistent (this plan works if followed properly)</li>
+  </ul>
+</footer>
+
+<script>
+function toggleDay(dayId) {
+  const day = document.getElementById(dayId);
+  day.style.display = (day.style.display === "block") ? "none" : "block";
+}
+
+function showMotivation(message) {
+  const popup = document.getElementById('popup');
+  const overlay = document.getElementById('overlay');
+  popup.innerHTML = `<span>💖</span><br>${message}`;
+  popup.style.display = 'block';
+  overlay.style.display = 'block';
+}
+
+function closePopup() {
+  document.getElementById('popup').style.display = 'none';
+  document.getElementById('overlay').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
